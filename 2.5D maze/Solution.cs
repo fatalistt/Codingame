@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.IO;
 using System.Text;
@@ -21,7 +21,7 @@ class Solution
         Floor = '.',
         ShortWall = '+', HighWall = '#',
         VerticalSlope = '|', HorizontalSlope = '-',
-        Bridge = 'X', Tunnel='O'
+        Bridge = 'X', Tunnel = 'O'
     }
 
     class Point
@@ -75,9 +75,11 @@ class Solution
         toVisit.Enqueue(next);
     }
 
-    static bool CanGoOver(Tile next, bool onTop, bool horisontal)
+    static bool CanGoOver(Tile next, bool onTop, bool horisontal, Tile current)
     {
         bool res;
+        if ((current == Tile.VerticalSlope && horisontal) || (current == Tile.HorizontalSlope && !horisontal)) res = false;
+        else
         if (next == Tile.Floor) res = false;
         else if (next == Tile.ShortWall) res = onTop;
         else if (next == Tile.VerticalSlope) res = horisontal ? false : !onTop;
@@ -86,51 +88,57 @@ class Solution
         else if (next == Tile.Bridge) res = onTop;
         else if (next == Tile.Tunnel) res = false;
         else throw new ArgumentException();
-        //Console.Error.WriteLine($"Over) ({next}) => {res}");
+        Console.Error.WriteLine($"Over) ({current} -> {next}) => {res}");
         return res;
     }
 
-    static bool CanGoUnder(Tile next, bool onTop, bool horisontal)
+    static bool CanGoUnder(Tile next, bool onTop, bool horisontal, Tile current)
     {
         bool res;
+        if ((current == Tile.VerticalSlope && horisontal) || (current == Tile.HorizontalSlope && !horisontal)) res = false;
+        else 
         if (next == Tile.Floor) res = !onTop;
         else if (next == Tile.ShortWall) res = false;
-        else if (next == Tile.VerticalSlope) res = horisontal ? false :onTop;
+        else if (next == Tile.VerticalSlope) res = horisontal ? false : onTop;
         else if (next == Tile.HorizontalSlope) res = horisontal ? onTop : false;
         else if (next == Tile.HighWall) res = false;
         else if (next == Tile.Bridge) res = !onTop;
         else if (next == Tile.Tunnel) res = !onTop;
         else throw new ArgumentException();
-        //Console.Error.WriteLine($"Under) ({next}) => {res}");
+        Console.Error.WriteLine($"Under) ({current} -> {next}) => {res}");
         return res;
     }
 
     static bool CanGoLeft(Tile[,] maze, Point point, bool over)
     {
-        //Console.Error.Write($"\t=> ({point.x - 1}, {point.y}) (Left");
+        Console.Error.Write($"\t=> ({point.x - 1}, {point.y}) (Left");
         Tile next = maze[point.y, point.x - 1];
-        return over ? CanGoOver(next, point.onTop, HORIZONTAL) : CanGoUnder(next, point.onTop, HORIZONTAL);
+        Tile current = maze[point.y, point.x];
+        return over ? CanGoOver(next, point.onTop, HORIZONTAL, current) : CanGoUnder(next, point.onTop, HORIZONTAL, current);
     }
 
     static bool CanGoTop(Tile[,] maze, Point point, bool over)
     {
-        //Console.Error.Write($"\t=> ({point.x}, {point.y - 1}) (Top");
+        Console.Error.Write($"\t=> ({point.x}, {point.y - 1}) (Top");
         Tile next = maze[point.y - 1, point.x];
-        return over ? CanGoOver(next, point.onTop, VERTICAL) : CanGoUnder(next, point.onTop, VERTICAL);
+        Tile current = maze[point.y, point.x];
+        return over ? CanGoOver(next, point.onTop, VERTICAL, current) : CanGoUnder(next, point.onTop, VERTICAL, current);
     }
 
     static bool CanGoRight(Tile[,] maze, Point point, bool over)
     {
-        //Console.Error.Write($"\t=> ({point.x + 1}, {point.y}) (Right");
+        Console.Error.Write($"\t=> ({point.x + 1}, {point.y}) (Right");
         Tile next = maze[point.y, point.x + 1];
-        return over ? CanGoOver(next, point.onTop, HORIZONTAL) : CanGoUnder(next, point.onTop, HORIZONTAL);
+        Tile current = maze[point.y, point.x];
+        return over ? CanGoOver(next, point.onTop, HORIZONTAL, current) : CanGoUnder(next, point.onTop, HORIZONTAL, current);
     }
 
     static bool CanGoBottom(Tile[,] maze, Point point, bool over)
     {
-        //Console.Error.Write($"\t=> ({point.x}, {point.y + 1}) (Bottom");
+        Console.Error.Write($"\t=> ({point.x}, {point.y + 1}) (Bottom");
         Tile next = maze[point.y + 1, point.x];
-        return over ? CanGoOver(next, point.onTop, VERTICAL) : CanGoUnder(next, point.onTop, VERTICAL);
+        Tile current = maze[point.y, point.x];
+        return over ? CanGoOver(next, point.onTop, VERTICAL, current) : CanGoUnder(next, point.onTop, VERTICAL, current);
     }
 
     static int FindLengthOfShortestPath(Tile[,] tileMaze, Point[,,] maze, Point start, Point end)
@@ -143,7 +151,7 @@ class Solution
         {
             var current = toVisit.Dequeue();
             visited.Add(current);
-            //Console.Error.WriteLine(current);
+            Console.Error.WriteLine(current);
             if (!visited.Contains(maze[current.y, current.x - 1, 1]) && CanGoLeft(tileMaze, current, OVER)) UpdateLengthAndEnqueue(current, maze[current.y, current.x - 1, 1], toVisit);
             if (!visited.Contains(maze[current.y, current.x - 1, 0]) && CanGoLeft(tileMaze, current, UNDER)) UpdateLengthAndEnqueue(current, maze[current.y, current.x - 1, 0], toVisit);
             if (!visited.Contains(maze[current.y - 1, current.x, 1]) && CanGoTop(tileMaze, current, OVER)) UpdateLengthAndEnqueue(current, maze[current.y - 1, current.x, 1], toVisit);
@@ -189,5 +197,6 @@ class Solution
         int answer = FindLengthOfShortestPath(maze, goodMaze, start, end);
         PrintPathToError(end);
         Console.WriteLine(answer);
+        Console.Read();
     }
 }
