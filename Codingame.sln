@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carmichael numbers", "Carmi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XML MDF-2016", "XML MDF-2016\XML MDF-2016.csproj", "{A9273FFE-3039-4925-A280-7586916BB075}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Horse-racing Hyperduals", "Horse-racing Hyperduals\Horse-racing Hyperduals.csproj", "{D882FC77-DD0E-486B-A85D-2BC6BDEA62BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A9273FFE-3039-4925-A280-7586916BB075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9273FFE-3039-4925-A280-7586916BB075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9273FFE-3039-4925-A280-7586916BB075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D882FC77-DD0E-486B-A85D-2BC6BDEA62BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D882FC77-DD0E-486B-A85D-2BC6BDEA62BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D882FC77-DD0E-486B-A85D-2BC6BDEA62BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D882FC77-DD0E-486B-A85D-2BC6BDEA62BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
