@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XML MDF-2016", "XML MDF-201
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Horse-racing Hyperduals", "Horse-racing Hyperduals\Horse-racing Hyperduals.csproj", "{D882FC77-DD0E-486B-A85D-2BC6BDEA62BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morellet’s random lines", "Morellet’s random lines\Morellet’s random lines.csproj", "{B44C5159-F55B-4C4E-B82B-4FBF143FCE79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D882FC77-DD0E-486B-A85D-2BC6BDEA62BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D882FC77-DD0E-486B-A85D-2BC6BDEA62BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D882FC77-DD0E-486B-A85D-2BC6BDEA62BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B44C5159-F55B-4C4E-B82B-4FBF143FCE79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B44C5159-F55B-4C4E-B82B-4FBF143FCE79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B44C5159-F55B-4C4E-B82B-4FBF143FCE79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B44C5159-F55B-4C4E-B82B-4FBF143FCE79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
