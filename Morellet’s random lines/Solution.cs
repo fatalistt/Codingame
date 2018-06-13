@@ -43,8 +43,8 @@ class Solution
         else if (x == 1 || y == 1) res = 1;
         else
         {
-            bool xIsEven = x << 1 >> 1 == x;
-            bool yIsEven = y << 1 >> 1 == y;
+            bool xIsEven = x >> 1 << 1 == x;
+            bool yIsEven = y >> 1 << 1 == y;
             if (xIsEven && yIsEven) res = GCD(x >> 1, y >> 1) << 1;
             else if (xIsEven) res = GCD(x >> 1, y);
             else if (yIsEven) res = GCD(x, y >> 1);
