@@ -43,20 +43,20 @@ class Solution
         else if (x == 1 || y == 1) res = 1;
         else
         {
-            bool xIsEven = x << 2 >> 2 == x;
-            bool yIsEven = y << 2 >> 2 == y;
-            if (xIsEven && yIsEven) res = GCD(x >> 2, y >> 2);
-            else if (xIsEven) res = GCD(x >> 2, y);
-            else if (yIsEven) res = GCD(x, y >> 2);
-            else if (x > y) res = GCD((x - y) >> 2, y);
-            else res = GCD(x, (y - x) >> 2);
+            bool xIsEven = x << 1 >> 1 == x;
+            bool yIsEven = y << 1 >> 1 == y;
+            if (xIsEven && yIsEven) res = GCD(x >> 1, y >> 1) << 1;
+            else if (xIsEven) res = GCD(x >> 1, y);
+            else if (yIsEven) res = GCD(x, y >> 1);
+            else if (x > y) res = GCD((x - y) >> 1, y);
+            else res = GCD(x, (y - x) >> 1);
         }
         return res;
     }
 
     static int GCD(int a, int b, int c)
     {
-        return GCD(GCD(a, b), c);
+        return GCD(GCD(Math.Abs(a), Math.Abs(b)), Math.Abs(c));
     }
 
     static void ReadPoints(out Point A, out Point B)
